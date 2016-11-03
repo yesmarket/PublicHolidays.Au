@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PublicHolidays.Au.Internal.Computus;
+using PublicHolidays.Au.Internal.Extensions;
 
 namespace PublicHolidays.Au.Internal.Days
 {
@@ -18,11 +19,14 @@ namespace PublicHolidays.Au.Internal.Days
             _computus = computus;
         }
 
-        public State States => State.ACT | State.NSW | State.NT | State.QLD | State.SA | State.TAS | State.VIC | State.WA;
+        public State States => State.ACT | State.NSW | State.NT | State.QLD | State.SA | State.VIC;
+        public bool Regional => false;
 
-        /// <summary>
-        /// Varies according to the lunar cycle.
-        /// </summary>
+        public string GetNameFor(State state)
+        {
+            return nameof(EasterSaturday).ToSentence();
+        }
+
         public IEnumerable<DateTime> GetDatesFor(int year, State state)
         {
             return new[] { _computus.GetCalendarDateOfEasterFor(year).AddDays(-1) };

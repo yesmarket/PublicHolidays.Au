@@ -7,14 +7,13 @@ namespace PublicHolidays.Au.Internal.Days
     internal sealed class AnzacDay : IDay
     {
         public State States => State.National;
+        public bool Regional => false;
 
-        /// <summary>
-        /// 25 April - if the date falls on a Saturday, the 
-        /// public holiday is observed on that 
-        /// Saturday. If that date falls on a Sunday that 
-        /// day and the following Monday will be public 
-        /// holidays.
-        /// </summary>
+        public string GetNameFor(State state)
+        {
+            return nameof(AnzacDay).ToSentence();
+        }
+
         public IEnumerable<DateTime> GetDatesFor(int year, State state)
         {
             return

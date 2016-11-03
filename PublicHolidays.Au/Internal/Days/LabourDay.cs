@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PublicHolidays.Au.Internal.DateOfMonthCalculator;
+using PublicHolidays.Au.Internal.Extensions;
 using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
@@ -20,10 +21,21 @@ namespace PublicHolidays.Au.Internal.Days
         }
 
         public State States => State.National;
+        public bool Regional => false;
 
-        /// <summary>
-        ///     Second Monday in June.
-        /// </summary>
+        public string GetNameFor(State state)
+        {
+            switch (state)
+            {
+                case State.NT:
+                    return "May Day";
+                case State.TAS:
+                    return "Eight Hours Day";
+                default:
+                    return nameof(LabourDay).ToSentence();
+            }
+        }
+
         public IEnumerable<DateTime> GetDatesFor(int year, State state)
         {
             var labourDay = new List<DateTime>();

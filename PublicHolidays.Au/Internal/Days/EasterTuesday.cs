@@ -5,31 +5,31 @@ using PublicHolidays.Au.Internal.Extensions;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class EasterSunday : IDay
+    internal sealed class EasterTuesday : IDay
     {
         private readonly IComputus _computus;
 
-        public EasterSunday()
+        public EasterTuesday()
             : this(new DefaultComputus())
         {
         }
 
-        public EasterSunday(IComputus computus)
+        public EasterTuesday(IComputus computus)
         {
             _computus = computus;
         }
 
-        public State States => State.ACT | State.NSW | State.VIC;
+        public State States => State.TAS;
         public bool Regional => false;
 
         public string GetNameFor(State state)
         {
-            return nameof(EasterSunday).ToSentence();
+            return nameof(EasterTuesday).ToSentence();
         }
 
         public IEnumerable<DateTime> GetDatesFor(int year, State state)
         {
-            return new[] {_computus.GetCalendarDateOfEasterFor(year)};
+            return new[] { _computus.GetCalendarDateOfEasterFor(year).AddDays(2) };
         }
     }
 }

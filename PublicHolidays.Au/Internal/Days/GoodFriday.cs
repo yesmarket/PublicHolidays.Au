@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PublicHolidays.Au.Internal.Computus;
+using PublicHolidays.Au.Internal.Extensions;
 
 namespace PublicHolidays.Au.Internal.Days
 {
@@ -19,10 +20,13 @@ namespace PublicHolidays.Au.Internal.Days
         }
 
         public State States => State.National;
+        public bool Regional => false;
 
-        /// <summary>
-        /// Varies according to the lunar cycle.
-        /// </summary>
+        public string GetNameFor(State state)
+        {
+            return nameof(GoodFriday).ToSentence();
+        }
+
         public IEnumerable<DateTime> GetDatesFor(int year, State state)
         {
             return new[] {_computus.GetCalendarDateOfEasterFor(year).AddDays(-2)};

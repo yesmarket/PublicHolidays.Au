@@ -7,14 +7,13 @@ namespace PublicHolidays.Au.Internal.Days
     internal sealed class NewYearsDay : IDay
     {
         public State States => State.National;
+        public bool Regional => false;
 
-        /// <summary>
-        /// 1 January - if that date falls on a Saturday 
-        /// the public holiday transfers to the following 
-        /// Monday. If that date falls on a Sunday that 
-        /// day and the following Monday will be public 
-        /// holidays.
-        /// </summary>
+        public string GetNameFor(State state)
+        {
+            return nameof(NewYearsDay).ToSentence();
+        }
+
         public IEnumerable<DateTime> GetDatesFor(int year, State state)
         {
             return

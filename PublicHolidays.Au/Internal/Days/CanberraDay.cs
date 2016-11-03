@@ -6,26 +6,26 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class AdelaideCup : IDay
+    internal sealed class CanberraDay : IDay
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
 
-        public AdelaideCup()
+        public CanberraDay()
             : this(new DefaultDateOfMonthCalculator())
         {
         }
 
-        public AdelaideCup(IDateOfMonthCalculator dateOfMonthCalculator)
+        public CanberraDay(IDateOfMonthCalculator dateOfMonthCalculator)
         {
             _dateOfMonthCalculator = dateOfMonthCalculator;
         }
 
-        public State States => State.SA;
+        public State States => State.ACT;
         public bool Regional => false;
 
         public string GetNameFor(State state)
         {
-            return nameof(AdelaideCup).ToSentence();
+            return nameof(CanberraDay).ToSentence();
         }
 
         public IEnumerable<DateTime> GetDatesFor(int year, State state)

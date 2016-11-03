@@ -6,33 +6,33 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class AdelaideCup : IDay
+    internal sealed class WesternAustraliaDay : IDay
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
 
-        public AdelaideCup()
+        public WesternAustraliaDay()
             : this(new DefaultDateOfMonthCalculator())
         {
         }
 
-        public AdelaideCup(IDateOfMonthCalculator dateOfMonthCalculator)
+        public WesternAustraliaDay(IDateOfMonthCalculator dateOfMonthCalculator)
         {
             _dateOfMonthCalculator = dateOfMonthCalculator;
         }
 
-        public State States => State.SA;
+        public State States => State.WA;
         public bool Regional => false;
 
         public string GetNameFor(State state)
         {
-            return nameof(AdelaideCup).ToSentence();
+            return nameof(WesternAustraliaDay).ToSentence();
         }
 
         public IEnumerable<DateTime> GetDatesFor(int year, State state)
         {
             return new List<DateTime>
             {
-                _dateOfMonthCalculator.Find(Ordinal.Third, DayOfWeek.Monday).In(Month.March).For(year)
+                _dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.June).For(year)
             };
         }
     }
