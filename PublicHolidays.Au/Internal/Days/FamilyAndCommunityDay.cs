@@ -1,34 +1,27 @@
 using System;
 using System.Collections.Generic;
-using PublicHolidays.Au.Internal.DateOfMonthCalculator;
+using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class FamilyAndCommunityDay : IDay
+    internal sealed class FamilyAndCommunityDay : IDay, IIn
     {
-        private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
-
-        public FamilyAndCommunityDay()
-            : this(new DefaultDateOfMonthCalculator())
-        {
-        }
-
-        public FamilyAndCommunityDay(IDateOfMonthCalculator dateOfMonthCalculator)
-        {
-            _dateOfMonthCalculator = dateOfMonthCalculator;
-        }
-
         public State States => State.ACT;
-        public bool Regional => false;
+        public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameFor(State state)
+        public string GetNameOfPublicHolidayIn(State state)
         {
             return "Family & Community Day";
         }
 
-        public IEnumerable<DateTime> GetDatesFor(int year, State state)
+        public IIn GetPublicHolidayDatesFor(State state)
         {
-            //TODO
+            return this;
+        }
+
+        public IEnumerable<DateTime> In(int year)
+        {
+            // Cannot accurately calculate date of this public holiday.
             return new List<DateTime>();
         }
     }

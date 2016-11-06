@@ -6,9 +6,10 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class QueensBirthday : IDay
+    internal sealed class QueensBirthday : IDay, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
+        private State _state;
 
         public QueensBirthday()
             : this(new DefaultDateOfMonthCalculator())
@@ -21,18 +22,24 @@ namespace PublicHolidays.Au.Internal.Days
         }
 
         public State States => State.National;
-        public bool Regional => true;
+        public Trait Traits => Trait.MostPostcodes;
 
-        public string GetNameFor(State state)
+        public string GetNameOfPublicHolidayIn(State state)
         {
             return state == State.SA ? "Volunteer's Day" : "Queen's Birthday";
         }
 
-        public IEnumerable<DateTime> GetDatesFor(int year, State state)
+        public IIn GetPublicHolidayDatesFor(State state)
+        {
+            _state = state;
+            return this;
+        }
+
+        public IEnumerable<DateTime> In(int year)
         {
             var queensBirthday = new List<DateTime>();
 
-            switch (state)
+            switch (_state)
             {
                 case State.WA:
                     var firstMondayInOctober = _dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.October).For(year);

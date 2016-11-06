@@ -1,35 +1,28 @@
 using System;
 using System.Collections.Generic;
-using PublicHolidays.Au.Internal.DateOfMonthCalculator;
 using PublicHolidays.Au.Internal.Extensions;
+using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class GrandFinalEve : IDay
+    internal sealed class GrandFinalEve : IDay, IIn
     {
-        private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
-
-        public GrandFinalEve()
-            : this(new DefaultDateOfMonthCalculator())
-        {
-        }
-
-        public GrandFinalEve(IDateOfMonthCalculator dateOfMonthCalculator)
-        {
-            _dateOfMonthCalculator = dateOfMonthCalculator;
-        }
-
         public State States => State.VIC;
-        public bool Regional => false;
+        public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameFor(State state)
+        public string GetNameOfPublicHolidayIn(State state)
         {
             return nameof(GrandFinalEve).ToSentence();
         }
 
-        public IEnumerable<DateTime> GetDatesFor(int year, State state)
+        public IIn GetPublicHolidayDatesFor(State state)
         {
-            //TODO
+            return this;
+        }
+
+        public IEnumerable<DateTime> In(int year)
+        {
+            // Cannot accurately calculate date of AFL grand final.
             return new List<DateTime>();
         }
     }

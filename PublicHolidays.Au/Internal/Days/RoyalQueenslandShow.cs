@@ -1,20 +1,26 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using PublicHolidays.Au.Internal.Extensions;
+using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class RoyalQueenslandShow : IDay
+    internal sealed class RoyalQueenslandShow  : IDay, IIn
     {
-        public State States => State.QLD;
-        public bool Regional => true;
+        public State States => State.NSW;
+        public Trait Traits => Trait.NotAllPostcodes;
 
-        public string GetNameFor(State state)
+        public string GetNameOfPublicHolidayIn(State state)
         {
             return nameof(RoyalQueenslandShow).ToSentence();
         }
 
-        public IEnumerable<DateTime> GetDatesFor(int year, State state)
+        public IIn GetPublicHolidayDatesFor(State state)
+        {
+            return this;
+        }
+
+        public IEnumerable<DateTime> In(int year)
         {
             return new List<DateTime>();
         }

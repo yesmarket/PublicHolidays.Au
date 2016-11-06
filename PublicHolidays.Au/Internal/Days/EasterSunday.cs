@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using PublicHolidays.Au.Internal.Computus;
 using PublicHolidays.Au.Internal.Extensions;
+using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class EasterSunday : IDay
+    internal sealed class EasterSunday : IDay, IIn
     {
         private readonly IComputus _computus;
 
@@ -20,14 +21,19 @@ namespace PublicHolidays.Au.Internal.Days
         }
 
         public State States => State.ACT | State.NSW | State.VIC;
-        public bool Regional => false;
+        public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameFor(State state)
+        public string GetNameOfPublicHolidayIn(State state)
         {
             return nameof(EasterSunday).ToSentence();
         }
 
-        public IEnumerable<DateTime> GetDatesFor(int year, State state)
+        public IIn GetPublicHolidayDatesFor(State state)
+        {
+            return this;
+        }
+
+        public IEnumerable<DateTime> In(int year)
         {
             return new[] {_computus.GetCalendarDateOfEasterFor(year)};
         }

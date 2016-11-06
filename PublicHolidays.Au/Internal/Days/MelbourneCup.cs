@@ -6,7 +6,7 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class MelbourneCup : IDay
+    internal sealed class MelbourneCup : IDay, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
 
@@ -21,14 +21,19 @@ namespace PublicHolidays.Au.Internal.Days
         }
 
         public State States => State.VIC;
-        public bool Regional => true;
+        public Trait Traits => Trait.MostPostcodes;
 
-        public string GetNameFor(State state)
+        public string GetNameOfPublicHolidayIn(State state)
         {
             return nameof(MelbourneCup).ToSentence();
         }
 
-        public IEnumerable<DateTime> GetDatesFor(int year, State state)
+        public IIn GetPublicHolidayDatesFor(State state)
+        {
+            return this;
+        }
+
+        public IEnumerable<DateTime> In(int year)
         {
             return new List<DateTime>
             {

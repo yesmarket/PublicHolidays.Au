@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PublicHolidays.Au.Internal.Days;
 using PublicHolidays.Au.Internal.Extensions;
+using PublicHolidays.Au.Internal.Support;
 using AuPublicHolidays = PublicHolidays.Au.Internal.Helpers.PublicHolidays;
 
 namespace PublicHolidays.Au
@@ -53,8 +54,11 @@ namespace PublicHolidays.Au
             {
                 dates.AddRange(
                     _publicHolidays
-                        .Where(_ => _.States.HasFlag(state))
-                        .SelectMany(_ => _.GetDatesFor(_start.AddYears(i).Year, state))
+                        .Where(_ =>
+                            _.States.HasFlag(state) &&
+                            !_.Traits.HasFlag(Trait.NotAllPostcodes) &&
+                            !_.Traits.HasFlag(Trait.IndustrySpecific))
+                        .SelectMany(_ => _.GetPublicHolidayDatesFor(state).In(_start.AddYears(i).Year))
                         .ToList());
             }
 

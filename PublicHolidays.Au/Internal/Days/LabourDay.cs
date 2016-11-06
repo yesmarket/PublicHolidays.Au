@@ -6,9 +6,10 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.Days
 {
-    internal sealed class LabourDay : IDay
+    internal sealed class LabourDay : IDay, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
+        private State _state;
 
         public LabourDay()
             : this(new DefaultDateOfMonthCalculator())
@@ -21,9 +22,9 @@ namespace PublicHolidays.Au.Internal.Days
         }
 
         public State States => State.National;
-        public bool Regional => false;
+        public Trait Traits => Trait.AllPostcodes;
 
-        public string GetNameFor(State state)
+        public string GetNameOfPublicHolidayIn(State state)
         {
             switch (state)
             {
@@ -36,11 +37,17 @@ namespace PublicHolidays.Au.Internal.Days
             }
         }
 
-        public IEnumerable<DateTime> GetDatesFor(int year, State state)
+        public IIn GetPublicHolidayDatesFor(State state)
+        {
+            _state = state;
+            return this;
+        }
+
+        public IEnumerable<DateTime> In(int year)
         {
             var labourDay = new List<DateTime>();
 
-            switch (state)
+            switch (_state)
             {
                 case State.WA:
                     labourDay.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.March).For(year));
