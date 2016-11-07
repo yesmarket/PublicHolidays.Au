@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PublicHolidays.Au.Internal.Days;
+using PublicHolidays.Au.Internal.PublicHolidays;
 
 namespace PublicHolidays.Au.Internal.Helpers
 {
@@ -9,18 +9,18 @@ namespace PublicHolidays.Au.Internal.Helpers
     {
         private static readonly Lazy<PublicHolidays> Instance = new Lazy<PublicHolidays>(() => new PublicHolidays());
 
-        private readonly List<IDay> _publicHolidays;
+        private readonly List<IPublicHoliday> _publicHolidays;
 
         private PublicHolidays()
         {
-            var type = typeof (IDay);
+            var type = typeof (IPublicHoliday);
             _publicHolidays = type.Assembly.GetTypes()
                 .Where(_ => type.IsAssignableFrom(_) && !_.IsInterface)
-                .Select(_ => (IDay) Activator.CreateInstance(_))
+                .Select(_ => (IPublicHoliday) Activator.CreateInstance(_))
                 .ToList();
         }
 
         public static PublicHolidays Get => Instance.Value;
-        public IEnumerable<IDay> All => _publicHolidays;
+        public IEnumerable<IPublicHoliday> All => _publicHolidays;
     }
 }

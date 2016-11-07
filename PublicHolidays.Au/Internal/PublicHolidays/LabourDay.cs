@@ -4,9 +4,9 @@ using PublicHolidays.Au.Internal.DateOfMonthCalculator;
 using PublicHolidays.Au.Internal.Extensions;
 using PublicHolidays.Au.Internal.Support;
 
-namespace PublicHolidays.Au.Internal.Days
+namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class LabourDay : IDay, IIn
+    internal sealed class LabourDay : IPublicHoliday, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
         private State _state;

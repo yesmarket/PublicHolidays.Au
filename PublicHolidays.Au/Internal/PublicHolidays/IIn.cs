@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace PublicHolidays.Au.Internal.Days
+namespace PublicHolidays.Au.Internal.PublicHolidays
 {
     internal interface IIn
     {

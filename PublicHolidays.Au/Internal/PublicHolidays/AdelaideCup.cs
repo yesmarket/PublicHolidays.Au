@@ -4,9 +4,9 @@ using PublicHolidays.Au.Internal.DateOfMonthCalculator;
 using PublicHolidays.Au.Internal.Extensions;
 using PublicHolidays.Au.Internal.Support;
 
-namespace PublicHolidays.Au.Internal.Days
+namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class AdelaideCup : IDay, IIn
+    internal sealed class AdelaideCup : IPublicHoliday, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
 

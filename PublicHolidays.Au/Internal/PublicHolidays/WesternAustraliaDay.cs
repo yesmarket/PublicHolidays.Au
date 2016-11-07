@@ -4,28 +4,28 @@ using PublicHolidays.Au.Internal.DateOfMonthCalculator;
 using PublicHolidays.Au.Internal.Extensions;
 using PublicHolidays.Au.Internal.Support;
 
-namespace PublicHolidays.Au.Internal.Days
+namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class PicnicDay : IDay, IIn
+    internal sealed class WesternAustraliaDay : IPublicHoliday, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
 
-        public PicnicDay()
+        public WesternAustraliaDay()
             : this(new DefaultDateOfMonthCalculator())
         {
         }
 
-        public PicnicDay(IDateOfMonthCalculator dateOfMonthCalculator)
+        public WesternAustraliaDay(IDateOfMonthCalculator dateOfMonthCalculator)
         {
             _dateOfMonthCalculator = dateOfMonthCalculator;
         }
 
-        public State States => State.NT;
+        public State States => State.WA;
         public Trait Traits => Trait.AllPostcodes;
 
         public string GetNameOfPublicHolidayIn(State state)
         {
-            return nameof(PicnicDay).ToSentence();
+            return nameof(WesternAustraliaDay).ToSentence();
         }
 
         public IIn GetPublicHolidayDatesFor(State state)
@@ -37,7 +37,7 @@ namespace PublicHolidays.Au.Internal.Days
         {
             return new List<DateTime>
             {
-                _dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.August).For(year)
+                _dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.June).For(year)
             };
         }
     }

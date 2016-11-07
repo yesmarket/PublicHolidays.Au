@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PublicHolidays.Au.Internal.Days;
 using PublicHolidays.Au.Internal.Extensions;
+using PublicHolidays.Au.Internal.PublicHolidays;
 using PublicHolidays.Au.Internal.Support;
 using AuPublicHolidays = PublicHolidays.Au.Internal.Helpers.PublicHolidays;
 
@@ -10,7 +10,7 @@ namespace PublicHolidays.Au
 {
     public sealed class BusinessDaysCalculator : IBusinessDaysCalculator, IStartingFromBusinessDaysCalculator
     {
-        private readonly IEnumerable<IDay> _publicHolidays;
+        private readonly IEnumerable<IPublicHoliday> _publicHolidays;
         private DateTime _start;
         private State? _state;
 
@@ -20,7 +20,7 @@ namespace PublicHolidays.Au
         }
 
         internal BusinessDaysCalculator(
-            IEnumerable<IDay> publicHolidays)
+            IEnumerable<IPublicHoliday> publicHolidays)
         {
             _publicHolidays = publicHolidays;
         }

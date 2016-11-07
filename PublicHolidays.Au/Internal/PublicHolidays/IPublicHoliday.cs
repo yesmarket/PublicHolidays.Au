@@ -1,8 +1,8 @@
 using PublicHolidays.Au.Internal.Support;
 
-namespace PublicHolidays.Au.Internal.Days
+namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal interface IDay
+    internal interface IPublicHoliday
     {
         State States { get; }
         Trait Traits { get; }

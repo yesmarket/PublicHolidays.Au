@@ -4,9 +4,9 @@ using PublicHolidays.Au.Internal.Computus;
 using PublicHolidays.Au.Internal.Extensions;
 using PublicHolidays.Au.Internal.Support;
 
-namespace PublicHolidays.Au.Internal.Days
+namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class EasterMonday : IDay, IIn
+    internal sealed class EasterMonday : IPublicHoliday, IIn
     {
         private readonly IComputus _computus;
 

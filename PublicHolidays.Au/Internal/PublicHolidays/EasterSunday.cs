@@ -4,28 +4,28 @@ using PublicHolidays.Au.Internal.Computus;
 using PublicHolidays.Au.Internal.Extensions;
 using PublicHolidays.Au.Internal.Support;
 
-namespace PublicHolidays.Au.Internal.Days
+namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class GoodFriday : IDay, IIn
+    internal sealed class EasterSunday : IPublicHoliday, IIn
     {
         private readonly IComputus _computus;
 
-        public GoodFriday()
+        public EasterSunday()
             : this(new DefaultComputus())
         {
         }
 
-        public GoodFriday(IComputus computus)
+        public EasterSunday(IComputus computus)
         {
             _computus = computus;
         }
 
-        public State States => State.National;
+        public State States => State.ACT | State.NSW | State.VIC;
         public Trait Traits => Trait.AllPostcodes;
 
         public string GetNameOfPublicHolidayIn(State state)
         {
-            return nameof(GoodFriday).ToSentence();
+            return nameof(EasterSunday).ToSentence();
         }
 
         public IIn GetPublicHolidayDatesFor(State state)
@@ -35,7 +35,7 @@ namespace PublicHolidays.Au.Internal.Days
 
         public IEnumerable<DateTime> In(int year)
         {
-            return new[] {_computus.GetCalendarDateOfEasterFor(year).AddDays(-2)};
+            return new[] {_computus.GetCalendarDateOfEasterFor(year)};
         }
     }
 }

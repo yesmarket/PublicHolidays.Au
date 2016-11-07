@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using PublicHolidays.Au.Internal.Support;
 
-namespace PublicHolidays.Au.Internal.Days
+namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class FamilyAndCommunityDay : IDay, IIn
+    internal sealed class FamilyAndCommunityDay : IPublicHoliday, IIn
     {
         public State States => State.ACT;
         public Trait Traits => Trait.AllPostcodes;
