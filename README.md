@@ -24,8 +24,8 @@ The calculations for most Australian public holidays is pretty straight forward.
 \* A public holiday that is *inclusive* of particluar city/town/postcode should be excluded e.g. Royal Queensland Show in QLD. Alternativly a public holiday that is *exclusive* of particluar city/town/postcode should be included e.g. The Melbourne Cup in VIC where some regions observe the holiday on a differnet day corresponding with their own local racing carnival.
 
 ## List of Public Holidays
-| Holiday | State | Algorithm |
-| --- | --- | --- |
+| Holiday | State | Calculation |
+| :--- | :--- | :--- |
 | New Years Day | National | 1 January - if that date falls on a Saturday the public holiday transfers to the following Monday. If that date falls on a Sunday that day and the following Monday will be public holidays. |
 | Australia Day | National | 26 January - if that date falls on a Saturday the public holiday transfers to the following Monday. If that date falls on a Sunday that day and the following Monday will be public holidays. |
 | Labour Day | WA | 1st Monday in March. |
