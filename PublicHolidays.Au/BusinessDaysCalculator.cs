@@ -52,13 +52,14 @@ namespace PublicHolidays.Au
             var dates = new List<DateTime>();
             for (var i = 0; i < years; i++)
             {
+                var year = _start.AddYears(i*Math.Sign(days)).Year;
                 dates.AddRange(
                     _publicHolidays
                         .Where(_ =>
                             _.States.HasFlag(state) &&
                             !_.Traits.HasFlag(Trait.NotAllPostcodes) &&
                             !_.Traits.HasFlag(Trait.IndustrySpecific))
-                        .SelectMany(_ => _.GetPublicHolidayDatesFor(state).In(_start.AddYears(i*Math.Sign(days)).Year))
+                        .SelectMany(_ => _.GetPublicHolidayDatesFor(state).In(year))
                         .ToList());
             }
 
@@ -68,7 +69,9 @@ namespace PublicHolidays.Au
         private IEnumerable<DateTime> GetWorkDays(int numberOfDays, ICollection<DateTime> excludedDates)
         {
             var count = 0;
-            for (var day = _start;; day = day.AddDays(1 * Math.Sign(numberOfDays)))
+            var increment = 1 * Math.Sign(numberOfDays);
+            var maxIterations = Math.Abs(numberOfDays) + 1;
+            for (var day = _start;; day = day.AddDays(increment))
             {
                 if (!day.IsWeekend() && !day.In(excludedDates.ToArray()))
                 {
@@ -76,7 +79,7 @@ namespace PublicHolidays.Au
                     yield return day;
                 }
 
-                if (count >= Math.Abs(numberOfDays) + 1)
+                if (count >= maxIterations)
                 {
                     yield break;
                 }
