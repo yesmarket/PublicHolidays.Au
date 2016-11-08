@@ -6,7 +6,7 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class EasterMonday : IPublicHoliday, IIn
+    public sealed class EasterMonday : IPublicHoliday, IIn
     {
         private readonly IComputus _computus;
 

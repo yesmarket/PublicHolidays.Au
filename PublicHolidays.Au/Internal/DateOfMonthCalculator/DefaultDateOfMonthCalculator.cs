@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PublicHolidays.Au.Internal.Extensions;
 using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.DateOfMonthCalculator
 {
-    internal sealed class DefaultDateOfMonthCalculator : IDateOfMonthCalculator, IFindDateOfMonthCalculator, IFindInDateOfMonthCalculator
+    public sealed class DefaultDateOfMonthCalculator : IDateOfMonthCalculator, IFindDateOfMonthCalculator,
+        IFindInDateOfMonthCalculator
     {
-        private int _nth;
         private DayOfWeek _dayOfWeek;
         private int _month;
+        private int _nth;
 
         public IFindDateOfMonthCalculator Find(Ordinal nth, DayOfWeek dayOfWeek)
         {
@@ -36,7 +38,7 @@ namespace PublicHolidays.Au.Internal.DateOfMonthCalculator
         private static IEnumerable<DateTime> GetDatesFor(int year, int month)
         {
             var date = new DateTime(year, month, 1);
-            while (date.Month == month)
+            while (date.Month.In(month, month + 1))
             {
                 yield return date;
                 date = date.AddDays(1);

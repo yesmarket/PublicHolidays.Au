@@ -2,7 +2,7 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal interface IPublicHoliday
+    public interface IPublicHoliday
     {
         State States { get; }
         Trait Traits { get; }

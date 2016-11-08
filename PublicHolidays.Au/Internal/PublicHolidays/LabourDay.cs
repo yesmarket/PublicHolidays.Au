@@ -6,7 +6,7 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class LabourDay : IPublicHoliday, IIn
+    public sealed class LabourDay : IPublicHoliday, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
         private State _state;
@@ -45,29 +45,29 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
 
         public IEnumerable<DateTime> In(int year)
         {
-            var labourDay = new List<DateTime>();
+            var dates = new List<DateTime>();
 
             switch (_state)
             {
                 case State.WA:
-                    labourDay.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.March).For(year));
+                    dates.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.March).For(year));
                     break;
                 case State.TAS:
                 case State.VIC:
-                    labourDay.Add(_dateOfMonthCalculator.Find(Ordinal.Second, DayOfWeek.Monday).In(Month.March).For(year));
+                    dates.Add(_dateOfMonthCalculator.Find(Ordinal.Second, DayOfWeek.Monday).In(Month.March).For(year));
                     break;
                 case State.QLD:
                 case State.NT:
-                    labourDay.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.May).For(year));
+                    dates.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.May).For(year));
                     break;
                 case State.NSW:
                 case State.ACT:
                 case State.SA:
-                    labourDay.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.October).For(year));
+                    dates.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.October).For(year));
                     break;
             }
 
-            return labourDay;
+            return dates;
         }
     }
 }

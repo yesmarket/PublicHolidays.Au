@@ -6,16 +6,16 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class AdelaideCup : IPublicHoliday, IIn
+    public sealed class MarchPublicHoliday : IPublicHoliday, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
 
-        public AdelaideCup()
+        public MarchPublicHoliday()
             : this(new DefaultDateOfMonthCalculator())
         {
         }
 
-        public AdelaideCup(IDateOfMonthCalculator dateOfMonthCalculator)
+        public MarchPublicHoliday(IDateOfMonthCalculator dateOfMonthCalculator)
         {
             _dateOfMonthCalculator = dateOfMonthCalculator;
         }
@@ -25,20 +25,22 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
 
         public string GetNameOfPublicHolidayIn(State state)
         {
-            return nameof(AdelaideCup).ToSentence();
+            return nameof(MarchPublicHoliday).ToSentence();
         }
 
         public IIn GetPublicHolidayDatesFor(State state)
         {
-            return this;
+            return States.HasFlag(state) ? this : ShortCircuit.Response();
         }
 
         public IEnumerable<DateTime> In(int year)
         {
-            return new List<DateTime>
-            {
-                _dateOfMonthCalculator.Find(Ordinal.Third, DayOfWeek.Monday).In(Month.March).For(year)
-            };
+            return year > 2019
+                ? new List<DateTime>()
+                : new List<DateTime>
+                {
+                    _dateOfMonthCalculator.Find(Ordinal.Second, DayOfWeek.Monday).In(Month.March).For(year)
+                };
         }
     }
 }

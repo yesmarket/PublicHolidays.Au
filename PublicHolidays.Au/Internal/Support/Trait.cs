@@ -3,7 +3,7 @@ using System;
 namespace PublicHolidays.Au.Internal.Support
 {
     [Flags]
-    internal enum Trait
+    public enum Trait
     {
         AllPostcodes = 1,
         MostPostcodes = 2,

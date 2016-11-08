@@ -65,6 +65,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessDaysCalculatorTests.cs" />
+    <Compile Include="Internal\DefaultDateOfMonthCalculator\DefaultDateOfMonthCalculatorTests.cs" />
+    <Compile Include="Internal\PublicHolidays\AnzacDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\AustraliaDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\BoxingDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\ChristmasDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\EasterMondayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\EasterSaturdayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\EasterSundayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\EasterTuesdayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\GoodFridayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\CanberraDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\LabourDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\MarchPublicHolidayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\MelbourneCupTests.cs" />
+    <Compile Include="Internal\PublicHolidays\NewYearsDayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\PicnicDay.cs" />
+    <Compile Include="Internal\PublicHolidays\QueensBirthdayTests.cs" />
+    <Compile Include="Internal\PublicHolidays\WesternAustraliaDayTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -76,9 +94,7 @@
       <Name>PublicHolidays.Au</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Internal\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

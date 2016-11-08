@@ -6,7 +6,7 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class QueensBirthday : IPublicHoliday, IIn
+    public sealed class QueensBirthday : IPublicHoliday, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
         private State _state;
@@ -37,19 +37,19 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
 
         public IEnumerable<DateTime> In(int year)
         {
-            var queensBirthday = new List<DateTime>();
+            var dates = new List<DateTime>();
 
             switch (_state)
             {
                 case State.WA:
                     var firstMondayInOctober = _dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.October).For(year);
                     var lastDayOfSeptember = new DateTime(year, 9, 30);
-                    queensBirthday.Add(!lastDayOfSeptember.IsWeekend()
+                    dates.Add(!lastDayOfSeptember.IsWeekend()
                         ? firstMondayInOctober.AddDays(-7)
                         : firstMondayInOctober);
                     break;
                 case State.QLD:
-                    queensBirthday.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.October).For(year));
+                    dates.Add(_dateOfMonthCalculator.Find(Ordinal.First, DayOfWeek.Monday).In(Month.October).For(year));
                     break;
                 case State.ACT:
                 case State.NSW:
@@ -57,11 +57,11 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
                 case State.SA:
                 case State.TAS:
                 case State.VIC:
-                    queensBirthday.Add(_dateOfMonthCalculator.Find(Ordinal.Second, DayOfWeek.Monday).In(Month.June).For(year));
+                    dates.Add(_dateOfMonthCalculator.Find(Ordinal.Second, DayOfWeek.Monday).In(Month.June).For(year));
                     break;
             }
 
-            return queensBirthday;
+            return dates;
         }
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace PublicHolidays.Au.Internal.Computus
 {
-    internal interface IComputus
+    public interface IComputus
     {
         DateTime GetCalendarDateOfEasterFor(int year);
     }

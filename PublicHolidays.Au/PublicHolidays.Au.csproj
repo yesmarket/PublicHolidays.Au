@@ -53,10 +53,10 @@
     <Compile Include="Internal\Extensions\Extensions.Generic.cs" />
     <Compile Include="Internal\Extensions\Extensions.String.cs" />
     <Compile Include="Internal\Helpers\PublicHolidays.cs" />
-    <Compile Include="Internal\PublicHolidays\AdelaideCup.cs" />
+    <Compile Include="Internal\PublicHolidays\ShortCircuit.cs" />
+    <Compile Include="Internal\PublicHolidays\MarchPublicHoliday.cs" />
     <Compile Include="Internal\PublicHolidays\AnzacDay.cs" />
     <Compile Include="Internal\PublicHolidays\AustraliaDay.cs" />
-    <Compile Include="Internal\PublicHolidays\BankHoliday.cs" />
     <Compile Include="Internal\PublicHolidays\BoxingDay.cs" />
     <Compile Include="Internal\PublicHolidays\CanberraDay.cs" />
     <Compile Include="Internal\PublicHolidays\ChristmasDay.cs" />
@@ -74,7 +74,6 @@
     <Compile Include="Internal\PublicHolidays\NewYearsDay.cs" />
     <Compile Include="Internal\PublicHolidays\PicnicDay.cs" />
     <Compile Include="Internal\PublicHolidays\QueensBirthday.cs" />
-    <Compile Include="Internal\PublicHolidays\RoyalQueenslandShow.cs" />
     <Compile Include="Internal\PublicHolidays\WesternAustraliaDay.cs" />
     <Compile Include="Internal\Support\Month.cs" />
     <Compile Include="Internal\Support\Ordinal.cs" />

@@ -6,7 +6,7 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class CanberraDay : IPublicHoliday, IIn
+    public sealed class CanberraDay : IPublicHoliday, IIn
     {
         private readonly IDateOfMonthCalculator _dateOfMonthCalculator;
 
@@ -30,14 +30,14 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
 
         public IIn GetPublicHolidayDatesFor(State state)
         {
-            return this;
+            return States.HasFlag(state) ? this : ShortCircuit.Response();
         }
 
         public IEnumerable<DateTime> In(int year)
         {
             return new List<DateTime>
             {
-                _dateOfMonthCalculator.Find(Ordinal.Third, DayOfWeek.Monday).In(Month.March).For(year)
+                _dateOfMonthCalculator.Find(Ordinal.Second, DayOfWeek.Monday).In(Month.March).For(year)
             };
         }
     }

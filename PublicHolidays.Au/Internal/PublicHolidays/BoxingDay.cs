@@ -5,7 +5,7 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class BoxingDay : IPublicHoliday, IIn
+    public sealed class BoxingDay : IPublicHoliday, IIn
     {
         public State States => State.National;
         public Trait Traits => Trait.AllPostcodes;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Shouldly;
 using Xunit;
 
@@ -7,35 +6,81 @@ namespace PublicHolidays.Au.UnitTests
 {
     public class BusinessDaysCalculatorTests
     {
-        private BusinessDaysCalculator _sut;
+        private readonly BusinessDaysCalculator _businessDaysCalculator;
 
-        [Fact]
-        public void Test()
+        public BusinessDaysCalculatorTests()
         {
-            var dayOfWeek1 = GetIso8601WeekOfYear(new DateTime(2016, 10, 1));
-            var dayOfWeek2 = GetIso8601WeekOfYear(new DateTime(2015, 10, 3));
-            var dayOfWeek3 = GetIso8601WeekOfYear(new DateTime(2015, 9, 27));
-
-            _sut = new BusinessDaysCalculator();
-            var addBusinessDays = _sut.In(State.SA).StartingFrom(DateTime.Today).AddBusinessDays(5);
-            addBusinessDays.ShouldBe(new DateTime());
+            _businessDaysCalculator = new BusinessDaysCalculator();
         }
 
-        // This presumes that weeks start with Monday.
-        // Week 1 is the 1st week of the year with a Thursday in it.
-        public static int GetIso8601WeekOfYear(DateTime time)
+        [Fact]
+        public void AddBusinessDays_RangeThatDoesntGoOverWeekend_ReturnsExactNumberOfDaysAfterStartDate()
         {
-            // Seriously cheat.  If its Monday, Tuesday or Wednesday, then it'll 
-            // be the same week# as whatever Thursday, Friday or Saturday are,
-            // and we always get those right
-            DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(time);
-            if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday)
-            {
-                time = time.AddDays(3);
-            }
+            var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2016, 10, 31)).AddBusinessDays(3);
+            dateTime.ShouldBe(new DateTime(2016, 11, 3));
+        }
 
-            // Return the week of our adjusted day
-            return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(time, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+        [Fact]
+        public void AddBusinessDays_RangeThatGoesOverWeekend_ReturnsNumberOfBusinessDaysAfterStartDate()
+        {
+            var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2016, 10, 28)).AddBusinessDays(3);
+            dateTime.ShouldBe(new DateTime(2016, 11, 2));
+        }
+
+        [Fact]
+        public void AddBusinessDays_RangeThatGoesOverWeekendAndIncludesPublicHoliday_ReturnsNumberOfBusinessDaysIncludingPublicHolidayAfterStartDate()
+        {
+            var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2018, 1, 24)).AddBusinessDays(3);
+            dateTime.ShouldBe(new DateTime(2018, 1, 30));
+        }
+
+        [Fact]
+        public void AddBusinessDays_RangeThatDoesNotGoOverWeekendButIncludesPublicHoliday_ReturnsNumberOfDaysIncludingPublicHolidayAfterStartDate()
+        {
+            var dateTime = _businessDaysCalculator.In(State.VIC).StartingFrom(new DateTime(2018, 11, 5)).AddBusinessDays(3);
+            dateTime.ShouldBe(new DateTime(2018, 11, 9));
+        }
+
+        [Fact]
+        public void AddBusinessDays_RangeThatIncludesPublicHolidayFromDifferentState_ReturnsExactNumberOfDaysAfterStartDate()
+        {
+            var dateTime = _businessDaysCalculator.In(State.SA).StartingFrom(new DateTime(2018, 11, 5)).AddBusinessDays(3);
+            dateTime.ShouldBe(new DateTime(2018, 11, 8));
+        }
+
+        [Fact]
+        public void AddBusinessDays_RangeThatGoesOverWeekendAndIncludesBackToBackPublicHolidays_ReturnsNumberOfBusinessDaysIncludingPublicHolidaysAfterStartDate()
+        {
+            var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2016, 12, 23)).AddBusinessDays(3);
+            dateTime.ShouldBe(new DateTime(2016, 12, 30));
+        }
+
+        [Fact]
+        public void AddBusinessDays_LastBusinessDayOfTheYear_ReturnsNumberOfBusinessDaysAfterStartDateIncludingNewYearsDayForNextYear()
+        {
+            var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2016, 12, 30)).AddBusinessDays(3);
+            dateTime.ShouldBe(new DateTime(2017, 1, 5));
+        }
+
+        [Fact]
+        public void AddBusinessDays_NegativeRangeThatDoesntGoOverWeekend_ReturnsExactNumberOfDaysBeforeStartDate()
+        {
+            var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2016, 11, 3)).AddBusinessDays(-3);
+            dateTime.ShouldBe(new DateTime(2016, 10, 31));
+        }
+
+        [Fact]
+        public void AddBusinessDays_NegativeRangeThatGoesOverWeekend_ReturnsNumberOfBusinessDaysBeforeStartDate()
+        {
+            var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2016, 11, 2)).AddBusinessDays(-3);
+            dateTime.ShouldBe(new DateTime(2016, 10, 28));
+        }
+
+        [Fact]
+        public void AddBusinessDays_NegativeRangeThatGoesOverWeekendAndIncludesPublicHoliday_ReturnsNumberOfBusinessDaysIncludingPublicHolidayBeforeStartDate()
+        {
+            var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2018, 1, 30)).AddBusinessDays(-3);
+            dateTime.ShouldBe(new DateTime(2018, 1, 24));
         }
     }
 }

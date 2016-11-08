@@ -6,7 +6,7 @@ using PublicHolidays.Au.Internal.Support;
 
 namespace PublicHolidays.Au.Internal.PublicHolidays
 {
-    internal sealed class EasterTuesday : IPublicHoliday, IIn
+    public sealed class EasterTuesday : IPublicHoliday, IIn
     {
         private readonly IComputus _computus;
 
@@ -30,7 +30,7 @@ namespace PublicHolidays.Au.Internal.PublicHolidays
 
         public IIn GetPublicHolidayDatesFor(State state)
         {
-            return this;
+            return States.HasFlag(state) ? this : ShortCircuit.Response();
         }
 
         public IEnumerable<DateTime> In(int year)

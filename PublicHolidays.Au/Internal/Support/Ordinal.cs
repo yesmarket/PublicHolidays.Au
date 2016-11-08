@@ -1,6 +1,6 @@
 namespace PublicHolidays.Au.Internal.Support
 {
-    internal enum Ordinal
+    public enum Ordinal
     {
         First = 1,
         Second = 2,
