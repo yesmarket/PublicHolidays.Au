@@ -31,7 +31,7 @@ The calculations for most Australian public holidays is pretty straight forward.
 | Labour Day | WA | 1st Monday in March. |
 | Canberra Day | ACT | 2nd Monday in March. |
 | Labour Day* | TAS, VIC | 2nd Monday in March. |
-| March public holiday | SA | 2nd Monday in March. |
+| March public holiday | SA | 2nd Monday in March (currently proclaimed until 2019). |
 | Good Friday | National | Varies according to the lunar cycle. |
 | Easter Saturday | ACT, NSW, NT, QLD, SA, VIC | Varies according to the lunar cycle. |
 | Easter Sunday | ACT, NSW, VIC | Varies according to the lunar cycle. |
