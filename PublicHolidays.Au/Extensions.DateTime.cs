@@ -25,7 +25,7 @@ namespace PublicHolidays.Au
         // ReSharper disable once MemberCanBePrivate.Global
         public static DateTime AddBusinessDays(this DateTime value, int numberOfDays, State state)
         {
-            var businessDaysCalculator = new BusinessDaysCalculator(null);
+            var businessDaysCalculator = new BusinessDaysCalculator();
             var dateTime = businessDaysCalculator.In(state).StartingFrom(value).AddBusinessDays(numberOfDays);
 
             return dateTime;

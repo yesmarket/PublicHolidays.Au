@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessDaysCalculatorTests.cs" />
+    <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="Internal\DefaultDateOfMonthCalculator\DefaultDateOfMonthCalculatorTests.cs" />
     <Compile Include="Internal\PublicHolidays\AnzacDayTests.cs" />
     <Compile Include="Internal\PublicHolidays\AustraliaDayTests.cs" />

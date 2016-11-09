@@ -82,5 +82,12 @@ namespace PublicHolidays.Au.UnitTests
             var dateTime = _businessDaysCalculator.StartingFrom(new DateTime(2018, 1, 30)).AddBusinessDays(-3);
             dateTime.ShouldBe(new DateTime(2018, 1, 24));
         }
+
+        [Fact]
+        public void Test()
+        {
+            var addBusinessDays = DateTime.Today.AddBusinessDays(2);
+            addBusinessDays.ShouldBeGreaterThan(DateTime.Today);
+        }
     }
 }
