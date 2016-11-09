@@ -1,0 +1,12 @@
+language: csharp
+solution: PublicHolidays.sln
+install:
+  - nuget restore PublicHolidays.sln
+  - nuget install xunit.runner.console -Version 2.1.0 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release PublicHolidays.sln
+  - mono ./testrunner/xunit.runner.console.2.1.0/tools/xunit.console.exe ./PublicHolidays.Au.UnitTests/bin/Release/PublicHolidays.Au.UnitTests.dll
+notifications:
+  email:
+    - devadmin@certegy.com.au
+    - ryan.bartsch@certegy.com.au
