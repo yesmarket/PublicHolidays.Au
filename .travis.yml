@@ -10,3 +10,4 @@ notifications:
   email:
     - devadmin@certegy.com.au
     - ryan.bartsch@certegy.com.au
+  slack: certegy:XpbQ5CcsAndkjqmE2szCZty9
