@@ -21,6 +21,13 @@ test:
     - PublicHolidays.Au.UnitTests
 after_test:
   - ps: .\coveralls.ps1
+deploy:
+  provider: NuGet
+  api_key:
+    secure: 3BAqdhpg8aurOgSzzMjyo5zV91VRrtzAAgY4Uimp2G+L0NaBlPNFPsUcdsKTF0bx
+  skip_symbols: false
+  symbol_server:
+  artifact: /.*\.nupkg/
 notifications:
   - provider: Email
     to:

@@ -1,4 +1,4 @@
-# PublicHolidays.Au [![Build status](https://ci.appveyor.com/api/projects/status/x52hv1rqkvc9fnb7?svg=true)](https://ci.appveyor.com/project/Certegy/publicholidays-au) [![Coverage Status](https://coveralls.io/repos/github/Certegy/PublicHolidays.Au/badge.svg)](https://coveralls.io/github/Certegy/PublicHolidays.Au) [![NuGet Version](https://img.shields.io/nuget/v/PublicHolidays.Au.svg?style=flat)](https://www.nuget.org/packages/PublicHolidays.Au/)
+# PublicHolidays.Au [![Build status](https://ci.appveyor.com/api/projects/status/x52hv1rqkvc9fnb7?svg=true)](https://ci.appveyor.com/project/Certegy/publicholidays-au) [![Coverage Status](https://coveralls.io/repos/github/Certegy/PublicHolidays.Au/badge.svg?branch=master)](https://coveralls.io/github/Certegy/PublicHolidays.Au?branch=master) [![NuGet Version](https://img.shields.io/nuget/v/PublicHolidays.Au.svg?style=flat)](https://www.nuget.org/packages/PublicHolidays.Au/)
 
 ## Overview
 
