@@ -154,3 +154,6 @@ UpgradeLog*.htm
 FakesAssemblies/
 *.orig
 .vs
+
+coverage-results/
+reports/

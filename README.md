@@ -1,4 +1,4 @@
-# PublicHolidays.Au
+# PublicHolidays.Au [![Build status](https://ci.appveyor.com/api/projects/status/x52hv1rqkvc9fnb7?svg=true)](https://ci.appveyor.com/project/Certegy/publicholidays-au) [![Coverage Status](https://coveralls.io/repos/github/Certegy/PublicHolidays.Au/badge.svg)](https://coveralls.io/github/Certegy/PublicHolidays.Au) [![NuGet Version](https://img.shields.io/nuget/v/PublicHolidays.Au.svg?style=flat)](https://www.nuget.org/packages/PublicHolidays.Au/)
 
 ## Overview
 
@@ -40,13 +40,13 @@ The calculations for most Australian public holidays is pretty straight forward.
 | Anzac Day | National | 25 April - if the date falls on a Saturday, the public holiday is observed on that Saturday. If that date falls on a Sunday that day and the following Monday will be public holidays. |
 | Labour Day* | NT, QLD | 1st Monday in May. |
 | Western Australia Day | WA | 1st Monday in June. |
-| Queen's Birthday | ACT, NSW, NT, SA, TAS, VIC | 2nd Monday in June. |
+| Queen's Birthday** | ACT, NSW, NT, SA, TAS, VIC | 2nd Monday in June. |
 | Picnic Day | NT | 1st Monday in August. |
 | Family & Community Day | ACT | 1st Monday of 3rd term school holidays. |
-| Queen's Birthday** | WA | Last Monday in September, or 1st Monday in October (when the last day in September falls on a weekend). |
+| Queen's Birthday | WA | Last Monday in September, or 1st Monday in October (when the last day in September falls on a weekend). |
 | Grand Final Eve| VIC | Last Friday in September, or 1st Friday in October. |
 | Queen's Birthday | QLD | 1st Monday in October. |
-| Labour Day* | ACT, NSW, SA | 1st Monday in October. |
+| Labour Day | ACT, NSW, SA | 1st Monday in October. |
 | Melbourne Cup Day | VIC | 1st Tuesday in November. |
 | Christmas Day  | National | 25 December - if that date falls on a Saturday the public holiday transfers to the following Monday. If that date falls on a Sunday that day and the following Monday will be public holidays. |
 | Boxing Day*** | National | 26 December - if that date falls on a Saturday the public holiday transfers to the following Monday. If that date falls on a Sunday or a Monday that day and the following Tuesday will be public holidays. |
@@ -55,21 +55,11 @@ The calculations for most Australian public holidays is pretty straight forward.
 \*\* Also known as Volunteer's Day in SA.<br />
 \*\*\* Known as Proclamation Day in SA.
 
-## Solution
-Solution is comprised of 2 projects:
-* PublicHolidays.Au is the main class-library/utility.
-* PublicHolidays.Au.UnitTests contains the unit tests for PublicHolidays.Au
-
-## Usage
-Use Nuget:
-```
-PM> Install-Package PublicHolidays.Au
-```
-
 ## Code
 Most of the functionality is accessible via DateTime extension methods for example:
 ```c#
-var dateTime = DateTime.Now.AddBusinessDays(10);
+var nextBusinessDay = DateTime.Now.AddBusinessDays(10);
+var nextBusinessDayInSA = DateTime.Now.AddBusinessDays(3, State.SA);
 ```
 
 ## Contributing
