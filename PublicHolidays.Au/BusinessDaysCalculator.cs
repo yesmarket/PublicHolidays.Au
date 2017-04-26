@@ -70,6 +70,7 @@ namespace PublicHolidays.Au
         {
             var count = 0;
             var increment = 1 * Math.Sign(numberOfDays);
+            if (increment == 0) increment = 1;
             var maxIterations = Math.Abs(numberOfDays) + 1;
             for (var day = _start;; day = day.AddDays(increment))
             {
