@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PublicHolidays.Au.Internal.Extensions;
 using AuPublicHolidays = PublicHolidays.Au.Internal.Helpers.PublicHolidays;
 
 namespace PublicHolidays.Au
@@ -29,6 +30,26 @@ namespace PublicHolidays.Au
             var dateTime = businessDaysCalculator.In(state).StartingFrom(value).AddBusinessDays(numberOfDays);
 
             return dateTime;
+        }
+
+        public static bool IsWeekendOrPublicHoliday(this DateTime value)
+        {
+            return value.IsWeekend() || value.IsPublicHoliday();
+        }
+
+        public static bool IsWeekendOrPublicHoliday(this DateTime value, State state)
+        {
+            return value.IsWeekend() || value.IsPublicHoliday(state);
+        }
+
+        public static bool IsPublicHoliday(this DateTime value)
+        {
+            return IsPublicHoliday(value, State.National);
+        }
+
+        public static bool IsPublicHoliday(this DateTime value, State state)
+        {
+            return GetPublicHolidaysFor(state, value.Year).SelectMany(_ => _.Value).Contains(value);
         }
     }
 }

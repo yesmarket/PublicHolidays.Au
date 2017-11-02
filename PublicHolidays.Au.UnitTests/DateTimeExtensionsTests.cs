@@ -44,5 +44,20 @@ namespace PublicHolidays.Au.UnitTests
 
             Assert.True(true);
         }
+
+
+        [Fact]
+        public void IsPublicHoliday_AnzacDay2017_ReturnsTrue()
+        {
+            var isPublicHoliday = new DateTime(2017, 4, 25).IsPublicHoliday();
+            isPublicHoliday.ShouldBe(true);
+        }
+
+        [Fact]
+        public void IsPublicHoliday_DayAfterAnzacDay2017_ReturnsFalse()
+        {
+            var isPublicHoliday = new DateTime(2017, 4, 26).IsPublicHoliday();
+            isPublicHoliday.ShouldBe(false);
+        }
     }
 }
